@@ -160,13 +160,7 @@ reelCircle.addEventListener('mouseleave', () => {
 const elements = document.querySelectorAll('.morse-static');
 
 function isElementInView(el) {
-  const rect = el.getBoundingClientRect();
-  return (
-    rect.top >= 0 &&
-    rect.left >= 0 &&
-    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-  );
+  return el.getBoundingClientRect();
 }
 
 function handleScroll() {
@@ -188,32 +182,32 @@ window.addEventListener('scroll', handleScroll);
 
 
 // Select the elements for the lines
-const line1Bottom = document.querySelector('header .div-nav .div-button .list5 .line1 .bottom');
-const line2Top = document.querySelector('header .div-nav .div-button .list5 .line2 .top');
-const line3Bottom = document.querySelector('header .div-nav .div-button .list5 .line3 .bottom');
+// const line1Bottom = document.querySelector('header .div-nav .div-button .list5 .line1 .bottom');
+// const line2Top = document.querySelector('header .div-nav .div-button .list5 .line2 .top');
+// const line3Bottom = document.querySelector('header .div-nav .div-button .list5 .line3 .bottom');
 
-// Function to reverse animation when it reaches the max value
-function reverseAnimation() {
-  // Check if the transform of the line1Bottom has reached 200% (end of the animation)
-  if (line1Bottom.style.transform === 'translateY(200%)') {
-    line1Bottom.style.animation = 'move-bottom-reverse 1s forwards'; // Apply reverse animation for line1
-  }
+// // Function to reverse animation when it reaches the max value
+// function reverseAnimation() {
+//   // Check if the transform of the line1Bottom has reached 200% (end of the animation)
+//   if (line1Bottom.style.transform === 'translateY(200%)') {
+//     line1Bottom.style.animation = 'move-bottom-reverse 1s forwards'; // Apply reverse animation for line1
+//   }
 
-  // Check if the transform of the line2Top has reached -195% (end of the animation)
-  if (line2Top.style.transform === 'translateY(-195%)') {
-    line2Top.style.animation = 'move-top-reverse 1s forwards'; // Apply reverse animation for line2
-  }
+//   // Check if the transform of the line2Top has reached -195% (end of the animation)
+//   if (line2Top.style.transform === 'translateY(-195%)') {
+//     line2Top.style.animation = 'move-top-reverse 1s forwards'; // Apply reverse animation for line2
+//   }
 
-  // Check if the transform of the line3Bottom has reached 200% (end of the animation)
-  if (line3Bottom.style.transform === 'translateY(200%)') {
-    line3Bottom.style.animation = 'move-bottom-reverse 1s forwards'; // Apply reverse animation for line3
-  }
-}
+//   // Check if the transform of the line3Bottom has reached 200% (end of the animation)
+//   if (line3Bottom.style.transform === 'translateY(200%)') {
+//     line3Bottom.style.animation = 'move-bottom-reverse 1s forwards'; // Apply reverse animation for line3
+//   }
+// }
 
-// Listen for when the animation ends
-line1Bottom.addEventListener('animationend', reverseAnimation);
-line2Top.addEventListener('animationend', reverseAnimation);
-line3Bottom.addEventListener('animationend', reverseAnimation);
+// // Listen for when the animation ends
+// line1Bottom.addEventListener('animationend', reverseAnimation);
+// line2Top.addEventListener('animationend', reverseAnimation);
+// line3Bottom.addEventListener('animationend', reverseAnimation);
 
 // Keyframes for the "move-bottom-reverse" animation (reverse animation for line1 and line3)
 // @keyframes move-bottom-reverse {
