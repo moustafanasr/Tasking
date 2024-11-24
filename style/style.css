@@ -1,0 +1,893 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  font-family: PP Neue Montreal, Arial;
+}
+
+:root {
+  --background-body-color: #000000;
+  --background-button-color: #ffffff;
+  --font-primary-color: #ffffff;
+  --font-secondary-color: #000000;
+}
+
+/* Start main code */
+a {
+  list-style: none;
+  color: var(--font-primary-color);
+  text-decoration: none;
+}
+
+/* End main code */
+
+/* Start Code body */
+body {
+  background-color: var(--background-body-color);
+}
+
+/* End Code body */
+
+/* Start Code Header */
+header {
+  width: 100%;
+  position: fixed;
+  z-index: 3000;
+}
+
+header .div-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  padding: 30px 50px;
+}
+
+header .div-nav .div-svg svg {
+  color: var(--font-primary-color);
+  cursor: pointer;
+}
+
+header .div-nav .div-list {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+  padding: 0px 90px;
+  position: relative;
+}
+
+header .div-nav .div-list .div-list-left {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+header .div-nav .div-list .div-list-right {
+  position: absolute;
+  right: 30px;
+}
+
+/* Container for the list */
+header .div-nav .div-list .div-list-left .list1,
+header .div-nav .div-list .div-list-left .list2,
+header .div-nav .div-list .div-list-left .list3,
+header .div-nav .div-list .div-list-right .list4 {
+  position: relative;
+  overflow-y: hidden;
+  min-width: 110px;
+  height: 20px;
+  /* background-color: red; */
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+header .div-nav .div-list .div-list-left .list2 {
+  margin: 0px 0px 0px 30px;
+}
+
+/* Positioning for line2 */
+header .div-nav .div-list .div-list-left .list1 .line2,
+header .div-nav .div-list .div-list-left .list2 .line2,
+header .div-nav .div-list .div-list-left .list3 .line2 {
+  position: absolute;
+  display: flex;
+  align-items: start;
+  justify-content: flex-end;
+  flex-direction: column;
+  padding-left: 33px;
+  top: 100%;
+  transform: translateY(-32%);
+  -webkit-transform: translateY(-32%);
+  -moz-transform: translateY(-32%);
+  -ms-transform: translateY(-32%);
+  -o-transform: translateY(-32%);
+  transition-property: animate;
+  transition-duration: 1s;
+}
+
+/* Line1 positioning */
+header .div-nav .div-list .div-list-left .list1 .line1,
+header .div-nav .div-list .div-list-left .list2 .line1,
+header .div-nav .div-list .div-list-left .list3 .line1,
+header .div-nav .div-list .div-list-right .list4 .line1 {
+  position: absolute;
+  display: flex;
+  align-items: start;
+  justify-content: flex-start;
+  flex-direction: column;
+  top: -100%;
+  transform: translateY(-35%);
+  -webkit-transform: translateY(-35%);
+  -moz-transform: translateY(-35%);
+  -ms-transform: translateY(-35%);
+  -o-transform: translateY(-35%);
+  transition-property: animate;
+  transition-duration: 1s;
+}
+
+/* Hover Effect on line1 */
+header .div-nav .div-list .div-list-left .list1:hover .line1 .bottom,
+header .div-nav .div-list .div-list-left .list2:hover .line1 .bottom,
+header .div-nav .div-list .div-list-left .list3:hover .line1 .bottom,
+header .div-nav .div-list .div-list-right .list4:hover .line1 .bottom {
+  animation: move-bottom 1s linear alternate both;
+  -webkit-animation: move-bottom 1s linear alternate both;
+}
+header .div-nav .div-list .div-list-left .list1:not(:hover) .line1 .bottom,
+header .div-nav .div-list .div-list-left .list2:not(:hover) .line1 .bottom,
+header .div-nav .div-list .div-list-left .list3:not(:hover) .line1 .bottom,
+header .div-nav .div-list .div-list-right .list4:not(:hover) .line1 .bottom {
+  animation: move-bottom-reverse 1s linear alternate both;
+  -webkit-animation: move-bottom-reverse 1s linear alternate both;
+}
+
+header .div-nav .div-list .div-list-left .list1:hover .line2 .top,
+header .div-nav .div-list .div-list-left .list2:hover .line2 .top,
+header .div-nav .div-list .div-list-left .list3:hover .line2 .top {
+  animation: move-top 1s linear alternate both;
+  -webkit-animation: move-top 1s linear alternate both;
+}
+header .div-nav .div-list .div-list-left .list1:not(:hover) .line2 .top,
+header .div-nav .div-list .div-list-left .list2:not(:hover) .line2 .top,
+header .div-nav .div-list .div-list-left .list3:not(:hover) .line2 .top {
+  animation: move-top-reverse 1s linear alternate both;
+  -webkit-animation: move-top-reverse 1s linear alternate both;
+}
+
+/* Keyframes for the "move-bottom" animation */
+@keyframes move-bottom {
+  0% {
+    transform: translateY(0);
+  }
+
+  25% {
+    transform: translateY(50%);
+  }
+
+  50% {
+    transform: translateY(150%);
+    -webkit-transform: translateY(150%);
+    -moz-transform: translateY(150%);
+    -ms-transform: translateY(150%);
+    -o-transform: translateY(150%);
+  }
+
+  100% {
+    transform: translateY(190%);
+    -webkit-transform: translateY(190%);
+    -moz-transform: translateY(190%);
+    -ms-transform: translateY(190%);
+    -o-transform: translateY(190%);
+  }
+}
+@keyframes move-bottom-reverse {
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(50%);
+  }
+
+  25% {
+    transform: translateY(150%);
+    -webkit-transform: translateY(150%);
+    -moz-transform: translateY(150%);
+    -ms-transform: translateY(150%);
+    -o-transform: translateY(150%);
+  }
+
+  0% {
+    transform: translateY(190%);
+    -webkit-transform: translateY(190%);
+    -moz-transform: translateY(190%);
+    -ms-transform: translateY(190%);
+    -o-transform: translateY(190%);
+  }
+}
+
+/* Keyframes for the "move-top" animation */
+@keyframes move-top {
+  0% {
+    transform: translateY(0);
+  }
+
+  25% {
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+  }
+
+  50% {
+    transform: translateY(-150%);
+    -webkit-transform: translateY(-150%);
+    -moz-transform: translateY(-150%);
+    -ms-transform: translateY(-150%);
+    -o-transform: translateY(-150%);
+  }
+
+  100% {
+    transform: translateY(-210%);
+    -webkit-transform: translateY(-210%);
+    -moz-transform: translateY(-210%);
+    -ms-transform: translateY(-210%);
+    -o-transform: translateY(-210%);
+  }
+}
+@keyframes move-top-reverse {
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+  }
+
+  25% {
+    transform: translateY(-150%);
+    -webkit-transform: translateY(-150%);
+    -moz-transform: translateY(-150%);
+    -ms-transform: translateY(-150%);
+    -o-transform: translateY(-150%);
+  }
+
+  0% {
+    transform: translateY(-210%);
+    -webkit-transform: translateY(-210%);
+    -moz-transform: translateY(-210%);
+    -ms-transform: translateY(-210%);
+    -o-transform: translateY(-210%);
+  }
+}
+
+
+header .div-nav .div-button {
+  background-color: var(--background-button-color);
+  border: 1px solid transparent;
+  border-radius: 10em;
+  display: inline-flex;
+  height: 2.875em;
+  padding: 0 2.5em;
+  cursor: pointer;
+
+  /* overflow-y: hidden; */
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  flex-direction: row;
+
+}
+
+header .div-nav .div-button:hover {
+  background-color: var(--background-body-color);
+  border: 1px solid var(--background-button-color);
+
+}
+
+header .div-nav .div-button .list5 a {
+  color: var(--font-secondary-color);
+  /* color: red; */
+  cursor: pointer;
+}
+
+header .div-nav .div-button:hover a {
+  color: var(--font-primary-color);
+}
+
+header .div-nav .div-button .list5 {
+  position: relative;
+  overflow-y: hidden;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+  flex-direction: row;
+  min-width: 130px;
+  height: 20px;
+  margin: 0px auto;
+}
+
+header .div-nav .div-button .list5 .line2 {
+  position: absolute;
+  display: flex;
+  align-items: start;
+  justify-content: flex-end;
+  flex-direction: column;
+  padding: 0px 0px 0px 45px;
+  top: 100%;
+  transform: translateY(-35%);
+
+}
+
+header .div-nav .div-button .list5 .line1 {
+  position: absolute;
+  display: flex;
+  align-items: start;
+  justify-content: flex-start;
+  flex-direction: column;
+  top: -100%;
+  transform: translateY(-36%);
+  -webkit-transform: translateY(-36%);
+  -moz-transform: translateY(-36%);
+  -ms-transform: translateY(-36%);
+  -o-transform: translateY(-36%);
+}
+
+header .div-nav .div-button .list5 .line3 {
+  position: absolute;
+  display: flex;
+  align-items: start;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding: 0px 0px 0px 73px;
+  top: -100%;
+  transform: translateY(-36%);
+  -webkit-transform: translateY(-36%);
+  -moz-transform: translateY(-36%);
+  -ms-transform: translateY(-36%);
+  -o-transform: translateY(-36%);
+  /* animation-duration: 3s; */
+  
+}
+
+/* Hover Effect on line1 */
+header .div-nav .div-button:hover .list5 .line1 .bottom,
+header .div-nav .div-button:hover .list5 .line3 .bottom {
+  animation: move-bottom 1s linear alternate forwards;
+  -webkit-animation: move-bottom 1s linear alternate forwards;
+}
+
+/* Reverse animation when not hovering */
+header .div-nav .div-button:not(:hover) .list5 .line1 .bottom,
+header .div-nav .div-button:not(:hover) .list5 .line3 .bottom {
+  animation: move-bottom-reverse 1s linear alternate forwards;
+  -webkit-animation: move-bottom-reverse 1s linear alternate forwards;
+}
+
+/* Hover effect for line2 */
+header .div-nav .div-button:hover .list5 .line2 .top {
+  animation: move-top 1s linear alternate forwards;
+  -webkit-animation: move-top 1s linear alternate forwards;
+}
+
+/* Reverse animation when not hovering for line2 */
+header .div-nav .div-button:not(:hover) .list5 .line2 .top {
+  animation: move-top-reverse 1s linear alternate forwards;
+  -webkit-animation: move-top-reverse 1s linear alternate forwards;
+}
+
+/* Keyframes for the "move-bottom" animation */
+@keyframes move-bottom {
+  0% {
+    transform: translateY(0);
+  }
+
+  25% {
+    transform: translateY(50%);
+  }
+
+  50% {
+    transform: translateY(150%);
+  }
+
+  100% {
+    transform: translateY(200%);
+  }
+}
+
+/* Keyframes for the "move-bottom-reverse" animation */
+@keyframes move-bottom-reverse {
+  0% {
+    transform: translateY(200%);
+  }
+
+  25% {
+    transform: translateY(150%);
+  }
+
+  50% {
+    transform: translateY(50%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Keyframes for the "move-top" animation */
+@keyframes move-top {
+  0% {
+    transform: translateY(0);
+  }
+
+  25% {
+    transform: translateY(-50%);
+  }
+
+  50% {
+    transform: translateY(-150%);
+  }
+
+  100% {
+    transform: translateY(-195%);
+  }
+}
+
+/* Keyframes for the "move-top-reverse" animation */
+@keyframes move-top-reverse {
+  0% {
+    transform: translateY(-195%);
+  }
+
+  25% {
+    transform: translateY(-150%);
+  }
+
+  50% {
+    transform: translateY(-50%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+
+/* Ensure normal direction when not hovering */
+header .div-nav .div-button .list5 .line1 .bottom,
+header .div-nav .div-button .list5 .line3 .bottom,
+header .div-nav .div-button .list5 .line2 .top {
+  animation-direction: normal; /* Default direction when not hovered */
+}
+
+/* Reverse animation when hover ends */
+header .div-nav .div-button .list5 .line1 .bottom:hover,
+header .div-nav .div-button .list5 .line3 .bottom:hover,
+header .div-nav .div-button .list5 .line2 .top:hover {
+  animation-direction: reverse; /* Reverse direction on hover out */
+}
+
+
+header .div-line{
+  position: relative;
+  /* height: 3px; */
+  /* background-color: red; */
+  width: 100%;
+  z-index: 2000;
+
+}
+header .div-line .line_set{
+  width: 100%;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.295);
+  height: 1px;
+  z-index: 2000;
+  transition: background-color 0.3s ease-in-out;
+  
+
+}
+header .div-line .line_set:hover{
+  background-color: rgba(255, 255, 255, 0.675);
+  
+
+}
+header .div-line .line_set svg{
+  position: absolute;
+  top: 0px;
+  left: 0;
+  /* transform: translate(0px ,-90%);
+  -webkit-transform: translate(0px ,-90%);
+  -moz-transform: translate(0px ,-90%);
+  -ms-transform: translate(0px ,-90%);
+  -o-transform: translate(0px ,-90%); */
+  z-index: 2000;
+  width: 120px;
+  height: 30px;
+  background-color: black;
+  display: none;
+}
+header .div-line .line_set svg path{
+  z-index: 2000;
+  display: block;
+  opacity: 0;
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+  -webkit-transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+  -ms-transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+  -o-transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+
+/* End Code Header */
+main .main-header {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+}
+
+main .main-header .div-video {
+  left: 50%;
+  height: 70%;
+  width: 50%;
+  object-fit: cover;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+main .main-header .div-video video {
+  left: 50%;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  z-index: 1;
+
+}
+
+/* Ensures that the video controls are hidden */
+main .main-header .div-video video::-webkit-media-controls {
+  display: none !important;
+}
+
+main .main-header .div-video video::-moz-media-controls {
+  display: none !important;
+}
+
+main .main-header .div-video video::-ms-media-controls {
+  display: none !important;
+}
+
+main .main-header .div-text {
+  color: var(--font-primary-color);
+  z-index: 900;
+  margin-top: 150px;
+  /* left: 50%; */
+  text-align: center;
+  /* position: absolute; */
+  /* top: 50%; */
+  /* transform: translate(-50%, -50%); */
+  will-change: transform;
+  /* -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%); */
+  width: 100%;
+}
+
+
+
+/* General Header Styling */
+main .main-header .div-text h1 {
+  display: flex;
+  font-size: 3em;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* General Word Styling */
+._words {
+  margin-left: 15px;
+}
+
+/* Character Styling - Initially Hidden */
+.SplitClass._chars {
+  display: inline-block;
+  position: relative;
+  margin: -6px;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 3s ease, transform 3s ease;
+  -webkit-transition: opacity 3s ease, transform 3s ease;
+  -moz-transition: opacity 3s ease, transform 3s ease;
+  -ms-transition: opacity 3s ease, transform 3s ease;
+  -o-transition: opacity 3s ease, transform 3s ease;
+}
+
+/* Morse Code Display */
+.SplitClass._chars::before {
+  content: attr(data-morse);
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  opacity: 1;
+  transition: opacity 3s ease, transform 3s ease;
+  -webkit-transition: opacity 3s ease, transform 3s ease;
+  -moz-transition: opacity 3s ease, transform 3s ease;
+  -ms-transition: opacity 3s ease, transform 3s ease;
+  -o-transition: opacity 3s ease, transform 3s ease;
+}
+
+/* Inner Text Display */
+.SplitClass._chars::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 3s ease, transform 3s ease;
+  -webkit-transition: opacity 3s ease, transform 3s ease;
+  -moz-transition: opacity 3s ease, transform 3s ease;
+  -ms-transition: opacity 3s ease, transform 3s ease;
+  -o-transition: opacity 3s ease, transform 3s ease;
+}
+
+/* When in view, start animation */
+.morse-static.inview .SplitClass._chars {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Transition from Morse to Text (after 2 seconds) */
+.morse-static.inview .SplitClass._chars::before {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+.morse-static.inview .SplitClass._chars::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+
+
+
+
+main .main-header .div-text p {
+  width: 100%;
+  margin: 0px auto;
+  font-size: 1.5em;
+  max-width: 30em;
+  line-height: 30px;
+  margin-top: 5px;
+  
+  transition: opacity 3s ease, transform 3s ease;
+  -webkit-transition: opacity 3s ease, transform 3s ease;
+  -moz-transition: opacity 3s ease, transform 3s ease;
+  -ms-transition: opacity 3s ease, transform 3s ease;
+  -o-transition: opacity 3s ease, transform 3s ease;
+  animation: transform-p 3s ease alternate forwards;
+  -webkit-animation: transform-p 3s ease alternate forwards;
+}
+@keyframes transform-p {
+  0%{
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100%{
+    opacity: 1;
+    transform: translateY(0%);
+    -webkit-transform: translateY(0%);
+    -moz-transform: translateY(0%);
+    -ms-transform: translateY(0%);
+    -o-transform: translateY(0%);
+}
+}
+
+main .main-header .reel-circle-set {
+  width: 150px;
+  height: 150px;
+  position: relative;
+  bottom: 0px;
+  right: 0px;
+  margin: 70px 70px 0px auto;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+  cursor: pointer;
+  transform: translate(0% , 0%);
+  -webkit-transform: translate(0% , 0%);
+  -moz-transform: translate(0% , 0%);
+  -ms-transform: translate(0% , 0%);
+  -o-transform: translate(0% , 0%);
+  transition: transform .5s ease-out;
+  -webkit-transition: transform .5s ease-out;
+  -moz-transition: transform .5s ease-out;
+  -ms-transition: transform .5s ease-out;
+  -o-transition: transform .5s ease-out;
+}
+
+main .main-header .reel-circle-set .reel-circle-set-line1,
+main .main-header .reel-circle-set .reel-circle-set-line2 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+main .main-header .reel-circle-set-line1 svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  animation: rotate-back 9s linear infinite forwards;
+  -webkit-animation: rotate-back 9s linear infinite forwards;
+}
+
+main .main-header .reel-circle-set-line2 .full_bg,
+main .main-header .reel-circle-set-line2 .reel_play {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 50%;
+  height: 50%;
+  transform: translate(50%, 50%);
+  -webkit-transform: translate(50%, 50%);
+  -moz-transform: translate(50%, 50%);
+  -ms-transform: translate(50%, 50%);
+  -o-transform: translate(50%, 50%);
+}
+
+main .main-header .reel-circle-set-line2 .full_bg svg{
+  position: absolute;
+  animation: rotate-front 9s linear infinite forwards;
+  -webkit-animation: rotate-front 9s linear infinite forwards;
+}
+main .main-header .reel-circle-set-line2 .reel_play svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-40%, -50%);
+  -webkit-transform: translate(-40%, -50%);
+  -moz-transform: translate(-40%, -50%);
+  -ms-transform: translate(-40%, -50%);
+  -o-transform: translate(-40%, -50%);
+}
+
+@keyframes rotate-back {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+  }
+
+  50% {
+    transform: rotate(-180deg);
+    -webkit-transform: rotate(-180deg);
+    -moz-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+  }
+
+  100% {
+    transform: rotate(-360deg);
+    -webkit-transform: rotate(-360deg);
+    -moz-transform: rotate(-360deg);
+    -ms-transform: rotate(-360deg);
+    -o-transform: rotate(-360deg);
+  }
+
+}
+@keyframes rotate-front {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+}
+
+  50% {
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+}
+
+  100% {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+}
+
+}
+main .main-header .reel-circle-set .reel-circle-set-video{
+  display: none;
+}
+main .main-header .reel-circle-set:hover .reel-circle-set-video{
+  display: block;
+}
+main .main-header .reel-circle-set:hover .reel-circle-set-line1{
+  display: none;
+}
+
+/* Ensures that the video controls are hidden */
+main .main-header .reel-circle-set:hover .reel-circle-set-video video::-webkit-media-controls {
+  display: none !important;
+}
+
+main .main-header .reel-circle-set:hover .reel-circle-set-video video::-moz-media-controls {
+  display: none !important;
+}
+
+main .main-header .reel-circle-set:hover .reel-circle-set-video video::-ms-media-controls {
+  display: none !important;
+}
