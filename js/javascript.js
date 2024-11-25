@@ -53,7 +53,7 @@ function handleMouseMove1(event) {
     svgPath.setAttribute('d', d);
 
     // Position and display the SVG
-    svg.style.transform = `translate(${mouseX - 120}px, -90%)`;
+    svg.style.transform = `translate(${mouseX - 100}px, -90%)`;
     svgPath.style.display = 'block';
     svgPath.style.opacity = '1';
   } else {
