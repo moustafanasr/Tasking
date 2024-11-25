@@ -507,22 +507,23 @@ header .div-line .line_set{
   
 
 }
-header .div-line .line_set:hover{
-  background-color: rgba(255, 255, 255, 0.675);
-  
-
+header:hover .div-line .line_set{
+  background-color: rgba(255, 255, 255, 0.575);
 }
+/* header .div-line .line_set:hover svg path{
+  background-color: rgba(255, 255, 255, 0.675);
+} */
 header .div-line .line_set svg{
   position: absolute;
-  top: 0px;
-  left: 0;
+  top: -2px;
+  left: 0px;
   /* transform: translate(0px ,-90%);
   -webkit-transform: translate(0px ,-90%);
   -moz-transform: translate(0px ,-90%);
   -ms-transform: translate(0px ,-90%);
   -o-transform: translate(0px ,-90%); */
   z-index: 2000;
-  width: 120px;
+  width: 300px;
   height: 30px;
   background-color: black;
   display: none;

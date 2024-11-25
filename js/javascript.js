@@ -1,88 +1,62 @@
 // Select the necessary elements
 const svgPath = document.querySelector('.div-line .line_set svg path');
 const svg = document.querySelector('.div-line .line_set svg');
+const header = document.querySelector('header'); // Select the header element
+
+// Function to change the path color
+function changePathColor(color) {
+  svgPath.setAttribute('stroke', color); // Set the stroke color
+  svgPath.setAttribute('stroke-width', '2'); // Ensure the stroke is visible
+}
 
 // Function to calculate the curve value based on mouse distance
-function calculateCurve(mouseY, pathY, maxCurve) {
+function calculateCurve(mouseY, pathY, startValue, endValue) {
   const distance = Math.abs(mouseY - pathY); // Distance between mouse and path
-  const maxDistance = 50; // Maximum range for proximity effect (100px)
+  const maxDistance = 300; // Maximum range for proximity effect
 
-  // Normalize proximity to [0, 1]: Closer mouse -> proximity = 1, farther -> proximity = 0
+  // Normalize proximity to [0, 1]
   const proximity = Math.max(0, Math.min(1, 1 - distance / maxDistance));
-  console.log('Proximity:', proximity);
-
-  // Return curve value decreasing from maxCurve (30) to 0
-  return maxCurve * proximity;
+  return startValue + (endValue - startValue) * proximity; // Return curve value
 }
 
-// Function to animate the curve value transition
-function animateCurveValue(startValue, targetValue, duration, onUpdate, onComplete) {
-  const startTime = performance.now();
-
-  function animate(currentTime) {
-    const elapsedTime = currentTime - startTime;
-    const progress = Math.min(elapsedTime / duration, 1); // Clamp progress to [0, 1]
-
-    // Interpolate the curve value
-    const currentValue = startValue + (targetValue - startValue) * progress;
-
-    // Call the update callback with the interpolated value
-    onUpdate(currentValue);
-
-    if (progress < 1) {
-      requestAnimationFrame(animate); // Continue animation
-    } else if (onComplete) {
-      onComplete(); // Call the completion callback if provided
-    }
-  }
-
-  requestAnimationFrame(animate);
-}
-
-// Function to handle mouse movement
+// Update the path dynamically with Cubic Bezier Curves
 function handleMouseMove1(event) {
-  const mouseX = event.clientX; // Mouse X position
-  const mouseY = event.clientY; // Mouse Y position
-  const pathY = svg.getBoundingClientRect().top; // Y position of the path
+  const mouseX = event.clientX;
+  const mouseY = event.clientY;
+  const pathY = svg.getBoundingClientRect().top;
 
-  // Only show and update the path if mouse Y position is less than 200
-  if (mouseY < 160) {
-    svg.style.display = 'block'
-    // Calculate the target curve value dynamically based on mouse proximity
-    let targetCurveValue = calculateCurve(mouseY, pathY, 10); // Maximum curve = 30
+  if (mouseY < 300) {
+    svg.style.display = 'block';
 
-    // Add 20 to targetCurveValue if mouse Y position is greater than 95
-    if (mouseY > 95) {
-      targetCurveValue += 20;
+    // Change color based on mouse position or header hover state
+    if (mouseY < 106 && mouseY > 1) {
+      changePathColor('rgba(255, 255, 255, 0.575)');
+    } else {
+      changePathColor('rgba(255, 255, 255, 0.275)');
     }
 
-    console.log('Target Curve Value:', targetCurveValue);
+    // Calculate curve values dynamically
+    const targetC1y2 = calculateCurve(mouseY, pathY, 30, 10); // Adjust control point 1
+    const targetC1y = calculateCurve(mouseY, pathY, 30, 8);  // Adjust control point 2
+    const targetC2y1 = calculateCurve(mouseY, pathY, 30, 3);  // Adjust control point 3
+    console.log("targetC1y : ",targetC1y)
+    console.log("targetC1y : ",targetC1y)
+    console.log("targetC2y1 : ",targetC2y1)
+    // Updated path with dynamic control points
+    const d = `
+      M0 30
+      C61 30 90 ${targetC1y2} 
+      110 ${targetC1y} 
+      170 ${targetC2y1} 
+      153 30 300 30
+    `;
+    svgPath.setAttribute('d', d);
 
-    // Get the current curve value from the `d` attribute
-    const currentD = svgPath.getAttribute('d');
-    const match = currentD.match(/C 60 (-?\d+\.?\d*), 60 (-?\d+\.?\d*),/); // Extract curve value
-    const currentCurveValue = match ? parseFloat(match[1]) || 0 : 0;
-
-    // Animate the curve transition
-    animateCurveValue(
-      currentCurveValue,
-      targetCurveValue,
-      500, // Duration of the animation in milliseconds
-      (animatedValue) => {
-        // Update the path's `d` attribute with the animated curve value
-        const d = `M 0 30 C 60 ${animatedValue}, 60 ${animatedValue}, 120 30`;
-        svgPath.setAttribute('d', d);
-      }
-    );
-
-    // Position the SVG relative to the mouse's X position
-    svg.style.transform = `translate(${mouseX - 60}px, -97%)`;
-
-    // Make the path visible with updated attributes
+    // Position and display the SVG
+    svg.style.transform = `translate(${mouseX - 160}px, -90%)`;
     svgPath.style.display = 'block';
     svgPath.style.opacity = '1';
   } else {
-    // Hide the path if the mouse's Y position is 200 or greater
     hidePath();
   }
 }
@@ -92,14 +66,20 @@ function hidePath() {
   svgPath.style.opacity = '0'; // Gradually fade out the path
   setTimeout(() => {
     if (svgPath.style.opacity === '0') {
+      svg.style.display = 'none';
+    }
+  }, 500); // Matches the fade-out transition duration
+  setTimeout(() => {
+    if (svgPath.style.opacity === '0') {
+      svg.style.display = 'none';
       svgPath.style.display = 'none'; // Hide completely after fading out
-      svg.style.display = 'none'
     }
   }, 1000); // Matches the fade-out transition duration
 }
 
 // Function to handle mouse leave
 function handleMouseLeave1() {
+  changePathColor('rgba(255, 255, 255, 0.295)'); // Reset to default color
   hidePath(); // Hide the path when the mouse leaves the window
 }
 
@@ -109,14 +89,13 @@ window.addEventListener('mouseleave', handleMouseLeave1);
 
 
 
-
 // Function to handle mouse movement
 function logMousePosition(event) {
   const mouseX = event.clientX; // Get the X position of the mouse
   const mouseY = event.clientY; // Get the Y position of the mouse
 
   // Log the position to the console
-  console.log(`Mouse Position: X=${mouseX}, Y=${mouseY}`);
+  // console.log(`Mouse Position: X=${mouseX}, Y=${mouseY}`);
 }
 
 // Add an event listener to track mouse movement
