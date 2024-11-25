@@ -25,7 +25,7 @@ function handleMouseMove1(event) {
   const mouseY = event.clientY;
   const pathY = svg.getBoundingClientRect().top;
 
-  if (mouseY < 300) {
+  if (mouseY < 330) {
     svg.style.display = 'block';
 
     // Change color based on mouse position or header hover state
@@ -36,24 +36,24 @@ function handleMouseMove1(event) {
     }
 
     // Calculate curve values dynamically
-    const targetC1y2 = calculateCurve(mouseY, pathY, 30, 10); // Adjust control point 1
-    const targetC1y = calculateCurve(mouseY, pathY, 30, 8);  // Adjust control point 2
-    const targetC2y1 = calculateCurve(mouseY, pathY, 30, 3);  // Adjust control point 3
+    const targetC1y2 = calculateCurve(mouseY, pathY, 30, 0); // Adjust control point 1
+    const targetC1y = calculateCurve(mouseY, pathY, 30, 0);  // Adjust control point 2
+    const targetC2y1 = calculateCurve(mouseY, pathY, 30, 0);  // Adjust control point 3
     console.log("targetC1y : ",targetC1y)
     console.log("targetC1y : ",targetC1y)
     console.log("targetC2y1 : ",targetC2y1)
     // Updated path with dynamic control points
     const d = `
       M0 30
-      C61 30 90 ${targetC1y2} 
-      110 ${targetC1y} 
+      C61 30 85 ${targetC1y2} 
+      115 ${targetC1y} 
       170 ${targetC2y1} 
       153 30 300 30
     `;
     svgPath.setAttribute('d', d);
 
     // Position and display the SVG
-    svg.style.transform = `translate(${mouseX - 160}px, -90%)`;
+    svg.style.transform = `translate(${mouseX - 120}px, -90%)`;
     svgPath.style.display = 'block';
     svgPath.style.opacity = '1';
   } else {
