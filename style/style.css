@@ -41,7 +41,7 @@ header .div-nav {
   align-items: center;
   flex-direction: row;
   flex-wrap: nowrap;
-  padding: 30px 50px;
+  padding: 20px 50px;
 }
 
 header .div-nav .div-svg svg {
@@ -285,7 +285,7 @@ header .div-nav .div-button {
   border: 1px solid transparent;
   border-radius: 10em;
   display: inline-flex;
-  height: 2.875em;
+  height: 2.575em;
   padding: 0 2.5em;
   cursor: pointer;
 
@@ -295,6 +295,7 @@ header .div-nav .div-button {
   align-content: center;
   justify-content: center;
   flex-direction: row;
+  z-index: 2000;
 
 }
 
@@ -510,36 +511,36 @@ header .div-line .line_set{
 header:hover .div-line .line_set{
   background-color: rgba(255, 255, 255, 0.575);
 }
+
 /* header .div-line .line_set:hover svg path{
   background-color: rgba(255, 255, 255, 0.675);
 } */
 header .div-line .line_set svg{
   position: absolute;
-  top: -2px;
+  top: 0px;
   left: 0px;
   /* transform: translate(0px ,-90%);
   -webkit-transform: translate(0px ,-90%);
   -moz-transform: translate(0px ,-90%);
   -ms-transform: translate(0px ,-90%);
   -o-transform: translate(0px ,-90%); */
-  z-index: 2000;
-  width: 300px;
-  height: 30px;
+  /* z-index: 1000; */
+  width: 290px;
+  height: 24px;
   background-color: black;
   display: none;
 }
 header .div-line .line_set svg path{
-  z-index: 2000;
+  z-index: 1000;
   display: block;
+  position: relative;
   opacity: 0;
-  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-  -webkit-transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-  -moz-transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-  -ms-transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-  -o-transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+  /* transition: opacity 1s linear, transform 1s ease-in-out;
+  -webkit-transition: opacity 1s linear, transform 1s ease-in-out;
+  -moz-transition: opacity 1s linear, transform 1s ease-in-out;
+  -ms-transition: opacity 1s linear, transform 1s ease-in-out;
+  -o-transition: opacity 1s linear, transform 1s ease-in-out; */
 }
-
-
 /* End Code Header */
 main .main-header {
   width: 100%;

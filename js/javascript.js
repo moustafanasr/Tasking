@@ -1,22 +1,19 @@
 // Select the necessary elements
 const svgPath = document.querySelector('.div-line .line_set svg path');
 const svg = document.querySelector('.div-line .line_set svg');
-const header = document.querySelector('header'); // Select the header element
 
 // Function to change the path color
 function changePathColor(color) {
-  svgPath.setAttribute('stroke', color); // Set the stroke color
-  svgPath.setAttribute('stroke-width', '2'); // Ensure the stroke is visible
+  svgPath.setAttribute('stroke', color);
+  svgPath.setAttribute('stroke-width', '2');
 }
 
 // Function to calculate the curve value based on mouse distance
 function calculateCurve(mouseY, pathY, startValue, endValue) {
-  const distance = Math.abs(mouseY - pathY); // Distance between mouse and path
-  const maxDistance = 300; // Maximum range for proximity effect
-
-  // Normalize proximity to [0, 1]
+  const distance = Math.abs(mouseY - pathY);
+  const maxDistance = 450;
   const proximity = Math.max(0, Math.min(1, 1 - distance / maxDistance));
-  return startValue + (endValue - startValue) * proximity; // Return curve value
+  return startValue + (endValue - startValue) * proximity;
 }
 
 // Update the path dynamically with Cubic Bezier Curves
@@ -25,35 +22,57 @@ function handleMouseMove1(event) {
   const mouseY = event.clientY;
   const pathY = svg.getBoundingClientRect().top;
 
-  if (mouseY < 330) {
+  if (mouseY < 130) {
     svg.style.display = 'block';
 
-    // Change color based on mouse position or header hover state
-    if (mouseY < 106 && mouseY > 1) {
+    // Change color and stroke width based on mouse position
+    if (mouseY < 87 && mouseY > 1) {
       changePathColor('rgba(255, 255, 255, 0.575)');
+      svgPath.setAttribute('stroke-width', '1.5');
+
     } else {
       changePathColor('rgba(255, 255, 255, 0.275)');
     }
 
-    // Calculate curve values dynamically
-    const targetC1y2 = calculateCurve(mouseY, pathY, 30, 0); // Adjust control point 1
-    const targetC1y = calculateCurve(mouseY, pathY, 30, 0);  // Adjust control point 2
-    const targetC2y1 = calculateCurve(mouseY, pathY, 30, 0);  // Adjust control point 3
-    console.log("targetC1y : ",targetC1y)
-    console.log("targetC1y : ",targetC1y)
-    console.log("targetC2y1 : ",targetC2y1)
-    // Updated path with dynamic control points
+    // Calculate dynamic curve values
+    let targetC1y2 = calculateCurve(mouseY, pathY, 22, 0);
+    let targetC1y = calculateCurve(mouseY, pathY, 22, 0);
+    let targetC2y1 = calculateCurve(mouseY, pathY, 22, 0);
+
+    // Adjust the control points based on mouseY range
+    if (mouseY > 60 && mouseY < 70) {
+      const offset = Math.floor((mouseY / 10) + 6);
+      targetC1y2 += offset;
+      targetC1y += offset;
+      targetC2y1 += offset;
+    }
+    if (mouseY > 70) {
+      const offset = Math.floor((mouseY / 10) + 7);
+      targetC1y2 += offset;
+      targetC1y += offset;
+      targetC2y1 += offset;
+    }
+
+    // Construct the path 'd' dynamically with updated control points
     const d = `
-      M0 30
-      C61 30 85 ${targetC1y2} 
-      115 ${targetC1y} 
-      170 ${targetC2y1} 
-      153 30 300 30
+      M0 22
+      C61 22 85 ${targetC1y2}
+      115 ${targetC1y}
+      170 ${targetC2y1}
+      153 22 300 22
     `;
     svgPath.setAttribute('d', d);
 
-    // Position and display the SVG
+    // Apply z-index for the path to ensure it appears on top
+    // svgPath.style.zIndex = '1000';
+    // svg.style.zIndex = '10';
+
+    // Smoothly translate the SVG element based on mouse position
+    svg.style.transition = 'all .3s';
     svg.style.transform = `translate(${mouseX - 120}px, -90%)`;
+    svgPath.style.transition = 'all 0.3s linear';
+
+    // Ensure the path is visible
     svgPath.style.display = 'block';
     svgPath.style.opacity = '1';
   } else {
@@ -63,30 +82,29 @@ function handleMouseMove1(event) {
 
 // Function to hide the path with a smooth transition
 function hidePath() {
-  svgPath.style.opacity = '0'; // Gradually fade out the path
+  svgPath.style.opacity = '0';
   setTimeout(() => {
     if (svgPath.style.opacity === '0') {
       svg.style.display = 'none';
     }
-  }, 500); // Matches the fade-out transition duration
+  }, 0);
   setTimeout(() => {
     if (svgPath.style.opacity === '0') {
       svg.style.display = 'none';
-      svgPath.style.display = 'none'; // Hide completely after fading out
+      svgPath.style.display = 'none';
     }
-  }, 1000); // Matches the fade-out transition duration
+  }, 800);
 }
 
 // Function to handle mouse leave
 function handleMouseLeave1() {
-  changePathColor('rgba(255, 255, 255, 0.295)'); // Reset to default color
-  hidePath(); // Hide the path when the mouse leaves the window
+  changePathColor('rgba(255, 255, 255, 0.295)');
+  hidePath();
 }
 
 // Add event listeners
 window.addEventListener('mousemove', handleMouseMove1);
 window.addEventListener('mouseleave', handleMouseLeave1);
-
 
 
 // Function to handle mouse movement
